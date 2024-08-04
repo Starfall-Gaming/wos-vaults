@@ -11,11 +11,12 @@ ENT.Spawnable = true -- Specifies whether this entity can be spawned by players 
 wOS = wOS or {}
 wOS.vaults = wOS.vaults or {}
 wOS.vaults.scrapper = wOS.vaults.scrapper or {}
+wOS.vaults.scrapper.XP_bonus = .2
 
 function wOS.vaults.scrapper.GetReward(item)
-    for id, loot pairs(T_WOSLEGACY.Config.LootTable) do
+    for id, loot in pairs(T_WOSLEGACY.Config.LootTable) do
         if table.HasValue(loot.item_drops, item) then
-            return loot.xp
+            return loot.xp * wOS.vaults.scrapper.XP_bonus
         end
     end
 

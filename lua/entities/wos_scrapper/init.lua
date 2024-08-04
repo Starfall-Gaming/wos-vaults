@@ -14,8 +14,17 @@ function ENT:Initialize()
     end
 end
 
-function ENT:Use(ply)
-    if not ply or not IsPlayer(ply) or not IsFirstTimePredicted() then return end
+util.AddNetworkString("wOS.Scrapper.OpenScrapperMenu")
+util.AddNetworkString("wOS.Scrapper.CloseScrapperMenu")
 
-    vgui.Create("wos_Scrapper", "scapper_menu")
+function ENT:Use(ply)
+	if ply.InWOSScrapperMenu then return end
+
+    net.Start("wOS.Scrapper.OpenScrapperMenu")
+        net.Send(ply)
+	ply.InWOSScrapperMenu = true
 end
+
+net.Receive("wOS.Scrapper.CloseScrapperMenu", function(len, ply)
+    ply.InWOSScrapperMenu = false
+end)

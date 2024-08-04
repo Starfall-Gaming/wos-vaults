@@ -1,37 +1,18 @@
 local PANEL = {}
 
 function PANEL:Init()
+	self:SetPos( 10, 30 ) -- Set the position of the panel
+	self:SetSize( 200, 200 ) -- Set the size of the panel
 
-	self:SetText_Base( "" )
-	self:SetText( "Time for something different!" )
-
+	self:SetVisible(true)
+	self:SetDraggable(false)
+	self:ShowCloseButton(true)
+	self:MakePopup()
 end
 
-function PANEL:Paint( aWide, aTall )
-
-	local TextX, TextY = 0, 0
-	local TextColor = Color( 255, 0, 0, 255 )
-
-	surface.SetFont( self:GetFont() or "default" )
-	surface.SetTextColor( TextColor )
-	surface.SetTextPos( TextX, TextY )
-	surface.DrawText( self:GetText() )
-
+function PANEL:OnClose()
+	net.Start("wOS.Scrapper.CloseScrapperMenu")
+	net.SendToServer()
 end
 
--- And here we go:
-PANEL.SetText_Base = FindMetaTable( "Panel" ).SetText
-
-function PANEL:SetText( aText ) 
-
-	self.Text = tostring( aText ) 
-
-end
-
-function PANEL:GetText() 
-
-	return self.Text or "" 
-
-end
-
-vgui.Register("wos_Scrapper", PANEL)
+vgui.Register("wos_Scrapper", PANEL, "DFrame")
