@@ -13,3 +13,18 @@ function ENT:Initialize()
         phys:Wake() -- Activates the physics object, making the entity subject to physics (gravity, collisions, etc.).
     end
 end
+
+util.AddNetworkString("wOS.PrivateVault.OpenPrivateVaultMenu")
+util.AddNetworkString("wOS.PrivateVault.ClosePrivateVaultMenu")
+
+function ENT:Use(ply)
+	if ply.InWOSPrivateVaultMenu then return end
+
+    net.Start("wOS.PrivateVault.OpenPrivateVaultMenu")
+        net.Send(ply)
+	ply.InWOSPrivateVaultMenu = true
+end
+
+net.Receive("wOS.PrivateVault.ClosePrivateVaultMenu", function(len, ply)
+    ply.InWOSPrivateVaultMenu = false
+end)

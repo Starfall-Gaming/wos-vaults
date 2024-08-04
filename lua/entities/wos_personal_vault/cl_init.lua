@@ -4,3 +4,7 @@ include("shared.lua")
 function ENT:Draw()
     self:DrawModel() -- Draws the model of the entity. This function is called every frame.
 end
+
+net.Receive("wOS.PrivateVault.OpenPrivateVaultMenu", function()
+    vgui.Create("wos_PrivateVault")
+end)
