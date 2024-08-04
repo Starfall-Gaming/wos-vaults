@@ -14,9 +14,6 @@ function ENT:Initialize()
     end
 end
 
-util.AddNetworkString("wOS.Scrapper.OpenScrapperMenu")
-util.AddNetworkString("wOS.Scrapper.CloseScrapperMenu")
-
 function ENT:Use(ply)
 	if ply.InWOSScrapperMenu then return end
 
@@ -24,7 +21,3 @@ function ENT:Use(ply)
         net.Send(ply)
 	ply.InWOSScrapperMenu = true
 end
-
-net.Receive("wOS.Scrapper.CloseScrapperMenu", function(len, ply)
-    ply.InWOSScrapperMenu = false
-end)

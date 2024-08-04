@@ -7,7 +7,3 @@ ENT.Category = "[wOS] Vaults" -- The category for this entity in the spawn menu.
 ENT.Contact = "STEAM_0:0:100858678" -- The contact details for the author of this entity.
 ENT.Purpose = "Store items that only you can access" -- The purpose of this entity.
 ENT.Spawnable = true -- Specifies whether this entity can be spawned by players in the spawn menu.
-
-wOS = wOS or {}
-wOS.vaults = wOS.vaults or {}
-wOS.vaults.privatevault = wOS.vaults.privatevault or {}
