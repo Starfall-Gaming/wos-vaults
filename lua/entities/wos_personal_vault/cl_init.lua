@@ -6,5 +6,5 @@ function ENT:Draw()
 end
 
 net.Receive("wOS.PrivateVault.OpenPrivateVaultMenu", function()
-    vgui.Create("wos_PrivateVault")
+    vgui.Create("wOS_PrivateVault")
 end)
